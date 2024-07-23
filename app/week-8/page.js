@@ -22,7 +22,7 @@ const Page = () => {
           </button>
           <div className="mt-4">
             <Link href="/week-8/shopping-list">
-              <a className="text-orange-500 underline">Go to Shopping List</a>
+              <span className="text-orange-500 underline cursor-pointer">Go to Shopping List</span>
             </Link>
           </div>
         </div>
