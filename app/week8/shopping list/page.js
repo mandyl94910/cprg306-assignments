@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewItem from './new-item';
 import ItemList from './item-list';
 import MealIdeas from './meal-ideas';
@@ -14,9 +14,8 @@ const Page = () => {
   const [items, setItems] = useState(itemsData);
   const [selectedItemName, setSelectedItemName] = useState('');
 
-  // 如果用户未登录，重定向到登录页面
-  React.useEffect(() => {
-    if (!user) {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !user) {
       router.push('/week-8');
     }
   }, [user, router]);
@@ -30,7 +29,7 @@ const Page = () => {
     setSelectedItemName(cleanItemName);
   };
 
-  if (!user) {
+  if (typeof window !== 'undefined' && !user) {
     return <p className="text-white">You must be logged in to view this page. Redirecting to login...</p>;
   }
 
