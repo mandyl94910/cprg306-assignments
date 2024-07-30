@@ -21,7 +21,7 @@ const Page = () => {
             Sign out
           </button>
           <div className="mt-4">
-            <Link href="/week-8/shopping-list">
+            <Link href="/week-10/shopping-list">
               <span className="text-orange-500 underline cursor-pointer">Go to Shopping List</span>
             </Link>
           </div>

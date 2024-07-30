@@ -6,31 +6,30 @@ import ItemList from './item-list';
 import MealIdeas from './meal-ideas';
 import { useUserAuth } from '../_utils/auth-context';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { getItems, addItem } from '../_services/shopping-list-service';
-
-useEffect(() => {
-  const loadItems = async () => {
-    if (user) {
-      const fetchedItems = await getItems(user.uid);
-      setItems(fetchedItems);
-    }
-  };
-
-  loadItems();
-}, [user]);
 
 const ShoppingListPage = () => {
   const { user } = useUserAuth();
   const router = useRouter();
-  const [items, setItems] = useState(itemsData);
+  const [items, setItems] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState('');
 
   useEffect(() => {
     if (!user) {
-      router.push('/week-8');
+      router.push('/week-10');
     }
   }, [user, router]);
+
+  useEffect(() => {
+    const loadItems = async () => {
+      if (user) {
+        const fetchedItems = await getItems(user.uid);
+        setItems(fetchedItems);
+      }
+    };
+
+    loadItems();
+  }, [user]);
 
   const handleAddItem = async (item) => {
     if (user) {
